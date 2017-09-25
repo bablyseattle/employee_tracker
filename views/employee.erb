@@ -1,0 +1,20 @@
+<% if @employees.any?() %>
+<p>Employees:</p>
+
+<ul>
+  <% @employees.each do |employee| %>
+  <li><a href='/<%=employee.id%>'><%= employee.name %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no employees yet!</p>
+<% end %>
+
+<p>Create a new employee:</p>
+
+<form action="/:department_id" method="post">
+  <label for="employee">Name of employee:</label>
+  <input  name="name" type="text">
+
+  <button type="submit">Add Employee</button>
+</form>

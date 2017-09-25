@@ -1,0 +1,20 @@
+<% if @departments.any?() %>
+<p>Departments:</p>
+
+<ul>
+  <% @departments.each do |department| %>
+  <li><a href='/<%=department.id%>'><%= department.description() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no departments yet!</p>
+<% end %>
+
+<p>Create a new department:</p>
+
+<form action="/" method="post">
+  <label for="department">Name of department:</label>
+  <input  name="description" type="text">
+
+  <button type="submit">Add Department</button>
+</form>
