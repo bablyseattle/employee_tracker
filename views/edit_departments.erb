@@ -1,0 +1,10 @@
+<h1>Update department: <%=@department.department_id() %> </h1>
+
+<form action="/operator/department/list/<%= @department.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="update_department">Update Department:</label>
+  <input id="update_department" name="update_department" type="text" value="<%= @department.department_id%>">
+
+
+  <button type="submit">Update</button>
+</form>

@@ -6,6 +6,8 @@ require("./lib/department")
 require("./lib/employee")
 require("pg")
 
+
+
 get('/') do
   @departments= Department.all
   erb :index
@@ -16,14 +18,28 @@ post('/') do
   department.save
   redirect '/'
 end
-get('/:department_id') do
-@employees = Employees.find(params.fetch("department_id").to_i())
+get('/:id') do
+@department = Department.find(params[:id].to_i)
+@employees = @department.employees
 erb :employee
 end
 
-post('/:department_id') do
+post('/:id') do
   name = params.fetch("name")
-  employee = Employee.new(:name => name)
+  department = Department.find(params['dep_id'].to_i)
+  employee = Employee.new(:name => name, :department_id => department.id)
   employee.save
-  redirect '/:department_id'
+  redirect back
+end
+
+get("/:id/edit") do
+  @department = Department.find(params.fetch("id").to_i())
+  erb(:department_edit)
+end
+
+patch("/departments/:id") do
+  name = params.fetch("name")
+  @department = Department.find(params.fetch("id").to_i())
+  @department.update({:department => department})
+  erb(:departments)
 end

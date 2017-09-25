@@ -13,8 +13,11 @@
 <p>Create a new employee:</p>
 
 <form action="/:department_id" method="post">
+  <input type="hidden" name="dep_id" value="<%= @department.id %>">
   <label for="employee">Name of employee:</label>
   <input  name="name" type="text">
 
   <button type="submit">Add Employee</button>
 </form>
+<br>
+<a href='/'>Back to home</a>
